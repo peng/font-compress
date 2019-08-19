@@ -1,0 +1,45 @@
+{
+  "name": "tools-system",
+  "version": "1.0.0",
+  "description": "auto frontend tools",
+  "main": "index.js",
+  "repository": "ssh://git@g.hz.netease.com:22222/auto_fe/tools/tools-system.git",
+  "author": "zhangzhipeng1",
+  "private": true,
+  "dependencies": {
+    "element-ui": "^2.11.1",
+    "fontmin": "^0.9.8",
+    "mysql": "^2.17.1",
+    "superagent": "^5.1.0",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.2"
+  },
+  "scripts": {
+    "dev": "pm2 start ./src/index.js --watch",
+    "log": "pm2 log",
+    "stop-dev": "pm2 stop ./src/index.js",
+    "test": "jest",
+    "devPage": "webpack-dev-server --config ./config/webpack.dev.js",
+    "server": "node ./src/index"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-component": "^1.1.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.8.0",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "vue-loader": "^15.7.1",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
