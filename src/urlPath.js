@@ -19,5 +19,6 @@ module.exports = {
   '/login': logIn,  // 登录接口
   '/signmember': signMember, // 添加组员接口
   '/uploadfont': uploadFont, // 上传文件接口
-  '/fontlist': fontList
+  '/fontlist': fontList,  // 查询字体
+  // '/fontdelete': fontDelete
 }
