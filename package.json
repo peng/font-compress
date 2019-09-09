@@ -20,7 +20,8 @@
     "stop-dev": "pm2 stop ./src/index.js",
     "test": "jest",
     "devPage": "webpack-dev-server --config ./config/webpack.dev.js",
-    "server": "node ./src/index"
+    "server": "node ./src/index",
+    "cover": "jest --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
