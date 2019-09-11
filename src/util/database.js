@@ -148,34 +148,104 @@ function existTable(table) {
 }
 
 function selectDatabase(database) {
-  // 选择数据库
+  /**
+   * 选择数据库 select database
+   * @param {string} database database name you want to select
+   */
+
   // connection.connect();
   return new Promise((resolve, reject) => {
-    connection.query(`use ${database}`, (err, results, fields) => {
+    connection.query(`use ${database}`, (err, result, fields) => {
+      /**
+       * @param {Object|null} err error message
+       * @param {Object|undefined} result
+       * @param {Object|undefined} fields
+       * 
+       * success status
+       * 
+       * err -> null
+       * result -> OkPacket {
+       *   fieldCount: 0,
+       *   affectedRows: 0,
+       *   insertId: 0,
+       *   serverStatus: 2,
+       *   warningCount: 0,
+       *   message: '',
+       *   protocol41: true,
+       *   changedRows: 0
+       * }
+       * fields -> undefined
+       * 
+       * fail example with select a database that not exist
+       * 
+       * err -> error Object {
+       *   code: 'ER_BAD_DB_ERROR',
+       *   errno: 1049,
+       *   sqlMessage: "Unknown database 'mytestrrr'",
+       *   sqlState: '42000',
+       *   index: 0,
+       *   sql: 'use mytestrrr'
+       * }
+       * result
+       */
+      
+      /* console.log('error show');
+      console.log(err);
+      console.log('result show');
+      console.log(result);
+      console.log('fields show');
+      console.log(fields); */
       // connection.end();
-      /* 
-      {
-        code: 'ER_BAD_DB_ERROR',
-        errno: 1049, // error number
-        sqlMessage: "Unknown database 'tools_system'",
-        sqlState: '42000',
-        index: 0,
-        sql: 'use TOOLS_SYSTEM'
-      }
-      */
+
       if (err) {
         reject(err);
       };
-      resolve({results, fields});
+      resolve({result, fields});
     })
   })
 }
 
 function createDatabase(database) {
-  // 创建数据库
+  /**
+   * 创建数据库 create database method
+   * @param {string} database database name you want to create
+   */
   // connection.connect();
   return new Promise((resolve, reject) => {
     connection.query(`CREATE DATABASE ${database}`, (err, result, fields) => {
+      /**
+       * @param {Object|null} err error message
+       * @param {Object|undefined} result
+       * @param {Object|undefined} fields
+       * 
+       * success status
+       * 
+       * err -> null
+       * result -> OkPacket {
+       *   fieldCount: 0,
+       *   affectedRows: 1,
+       *   insertId: 0,
+       *   serverStatus: 2,
+       *   warningCount: 0,
+       *   message: '',
+       *   protocol41: true,
+       *   changedRows: 0 
+       * }
+       * fields -> undefined
+       * 
+       * fail example with create same name database
+       * 
+       * err -> error object { 
+       *   code: 'ER_DB_CREATE_EXISTS',
+       *   errno: 1007,
+       *   sqlMessage: "Can't create database 'mytest'; database exists",
+       *   sqlState: 'HY000',
+       *   index: 0,
+       *   sql: 'CREATE DATABASE mytest' 
+       * }
+       * result -> undefined
+       * fields -> undefined
+       */
       // connection.end();
       if (err) {
         reject(err);
@@ -183,7 +253,7 @@ function createDatabase(database) {
       };
       resolve({result, fields});
     })
-  })
-}
+  });
+};
 
 module.exports = { createDatabase, selectDatabase, existTable, createTable, insertData, selectData, sqlCustom, deleteData, updateData };
