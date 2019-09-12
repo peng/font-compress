@@ -36,12 +36,15 @@ function updateData(table, set, condition) {
   })
 }
 
+/**
+ * select data
+ * 
+ * @param {string} table database table name
+ * @param {Array=} column table column names
+ * @param {string=} condition select data condition
+ * @return {Promise} Promise
+ */
 function selectData(table, column, condition) {
-  /**
-   * @param {string} table database table name
-   * @param {Array=} column table column names
-   * @param {string} condition select data condition
-   */
   // connection.connect();
   column = column ? column.join(', ') : "*";
   condition = condition ? ` WHERE ${condition}` : '';
@@ -59,14 +62,46 @@ function selectData(table, column, condition) {
   })
 };
 
+/**
+ * delete data 删除数据
+ * 
+ * @param {String} table table name
+ * @param {String=} condition sql syntax WHERE condition it is chooose or not, if no condition will delete all table data
+ * @return {Promise} Promise
+ */
 function deleteData(table, condition) {
-  // 删除数据
   // connection.connect();
   condition = condition ? ' WHERE '+condition : '';
   return new Promise((resolve, reject) => {
     const task = `DELETE FROM ${table+condition}`;
 
     connection.query(task, (err, result, fields) => {
+      /**
+       * @param {Object|null} err error message
+       * @param {Object|undefined} result
+       * @param {Object|undefined} fields
+       * 
+       * success example  
+       * 
+       * err -> null
+       * result -> OkPacket {
+       *   fieldCount: 0,
+       *   affectedRows: 0,
+       *   insertId: 0,
+       *   serverStatus: 34,
+       *   warningCount: 0,
+       *   message: '',
+       *   protocol41: true,
+       *   changedRows: 0
+       * }
+       * fields -> undefined
+       * 
+       * fail example
+       * 
+       * err -> error Object {}
+       * result -> undefined
+       * fields -> undefined
+       */
       // connection.end();
       if (err) {
         reject(err);
@@ -77,17 +112,55 @@ function deleteData(table, condition) {
   })
 };
 
+/**
+ * insert data into database 插入数据
+ * 
+ * @param {String} table table name that you want to insert data
+ * @param {Array} head table head name that you want to insert data
+ * @param {Array} value value you want to insert match with head
+ * @return {Promise} Promise
+ * 
+ */
 function insertData(table, head, value)  {
-  /* 
-  table: string
-  head: array
-  value: array
-   */
-  // 插入数据
+
   // connection.connect();
   return new Promise((resolve, reject) => {
     const task = `INSERT INTO ${table} (${head.join(", ")}) VALUES (${value.join(", ")})`;
     connection.query(task, (err, result, fields) => {
+      /**
+       * @param {Object|null} err error message
+       * @param {Object|undefined} result
+       * @param {Object|undefined} fields
+       * 
+       * success example  
+       * 
+       * err -> null
+       * result -> OkPacket {
+       *   fieldCount: 0,
+       *   affectedRows: 0,
+       *   insertId: 0,
+       *   serverStatus: 2,
+       *   warningCount: 0,
+       *   message: '',
+       *   protocol41: true,
+       *   changedRows: 0
+       * }
+       * fields -> undefined
+       * 
+       * fail example
+       * 
+       * err -> error Object {
+       *   code: 'ER_TABLE_EXISTS_ERROR',,
+       *   errno: 1050,
+       *   sqlMessage: "Table 'test_table' already exists",
+       *   sqlState: '42S01',
+       *   index: 0,
+       *   sql: 'CREATE TABLE test_table (id SMALLINT, account VARCHAR(255))'
+       * }
+       * result -> undefined
+       * fields -> undefined
+       */
+
       // connection.end();
       if (err) {
         reject(err);
@@ -99,13 +172,52 @@ function insertData(table, head, value)  {
   
 }
 
+/**
+ * 创建数据表 create database table
+ * 
+ * @param {String} table table name you want to create
+ * @param {Array} column column name and data type
+ * @return {Promise} Promise
+ */
 function createTable(table, column) {
-  // 创建数据表
   // connection.connect();
   const colStr = column.join(", ");
   return new Promise((resolve, reject) => {
     const tarsk = `CREATE TABLE ${table} (${colStr})`;
     connection.query(tarsk, (err, result, fields) => {
+      /**
+       * @param {Object|null} err error message
+       * @param {Object|undefined} result
+       * @param {Object|undefined} fields
+       * 
+       * success example  
+       * 
+       * err -> null
+       * result -> OkPacket {
+       *   fieldCount: 0,
+       *   affectedRows: 0,
+       *   insertId: 0,
+       *   serverStatus: 2,
+       *   warningCount: 0,
+       *   message: '',
+       *   protocol41: true,
+       *   changedRows: 0
+       * }
+       * fields -> undefined
+       * 
+       * fail example
+       * 
+       * err -> error Object {
+       *   code: 'ER_TABLE_EXISTS_ERROR',,
+       *   errno: 1050,
+       *   sqlMessage: "Table 'test_table' already exists",
+       *   sqlState: '42S01',
+       *   index: 0,
+       *   sql: 'CREATE TABLE test_table (id SMALLINT, account VARCHAR(255))'
+       * }
+       * result -> undefined
+       * fields -> undefined
+       */
       // connection.end();
       if (err) {
         reject(err);
@@ -118,14 +230,49 @@ function createTable(table, column) {
   
 }
 
+/**
+ * 判断是否存在表 exist table or not
+ * 
+ * @param {string} table name of database table
+ * @return {Promise} Promise
+ */
 function existTable(table) {
-  /**
-   * @param {string} table name of database table
-   */
-  // 判断是否存在表
   // connection.connect();
   return new Promise((resolve, reject) => {
     connection.query("SHOW TABLES", (err, result, fields) => {
+      /**
+       * @param {Object|null} err error message
+       * @param {Object|undefined|Array} result
+       * @param {Object|undefined|Array} fields
+       * 
+       * success example 
+       * 
+       * err -> null
+       * result -> Array [
+       *   RowDataPacket { Tables_in_tools_system: 'FONT_CACHE' },
+       *   RowDataPacket { Tables_in_tools_system: 'test_table' },
+       *   RowDataPacket { Tables_in_tools_system: 'font' },
+       *   RowDataPacket { Tables_in_tools_system: 'member' }
+       * ]
+       * fields -> Array [
+       *   FieldPacket {
+       *     catalog: 'def',
+       *     db: 'information_schema',
+       *     table: 'TABLE_NAMES',
+       *     orgTable: 'TABLE_NAMES',
+       *     name: 'Tables_in_tools_system',
+       *     orgName: 'TABLE_NAME',
+       *     charsetNr: 33,
+       *     length: 192,
+       *     type: 253,
+       *     flags: 1,
+       *     decimals: 0,
+       *     default: undefined,
+       *     zeroFill: false,
+       *     protocol41: true 
+       *   }
+       * ]
+       */
       // connection.end();
       if (err) {
         reject(err);
@@ -147,11 +294,13 @@ function existTable(table) {
   
 }
 
+/**
+ * 选择数据库 select database
+ * 
+ * @param {string} database database name you want to select
+ * @return {Promise} Promise
+ */
 function selectDatabase(database) {
-  /**
-   * 选择数据库 select database
-   * @param {string} database database name you want to select
-   */
 
   // connection.connect();
   return new Promise((resolve, reject) => {
@@ -205,11 +354,14 @@ function selectDatabase(database) {
   })
 }
 
+/**
+ * 创建数据库 create database method
+ * 
+ * @param {string} database database name you want to create
+ * @return {Promise} Promise
+ */
 function createDatabase(database) {
-  /**
-   * 创建数据库 create database method
-   * @param {string} database database name you want to create
-   */
+
   // connection.connect();
   return new Promise((resolve, reject) => {
     connection.query(`CREATE DATABASE ${database}`, (err, result, fields) => {
