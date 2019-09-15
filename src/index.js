@@ -12,6 +12,8 @@ const server = http.createServer((req, res) => {
     const name = req.url.split("minifont/")[1];
     urlPath[url](req, res, name);
     return;
+  } else if (/notsave/.test(url)) {
+    url = '/notsave'
   } else if (!(url in urlPath)) {
     url = 'notFound';
   }
