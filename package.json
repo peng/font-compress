@@ -9,6 +9,7 @@
   "dependencies": {
     "element-ui": "^2.11.1",
     "fontmin": "^0.9.8",
+    "multiparty": "^4.2.1",
     "mysql": "^2.17.1",
     "superagent": "^5.1.0",
     "vue": "^2.6.10",
