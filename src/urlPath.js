@@ -3,6 +3,7 @@ const fontFile = require('./fontCompress/fontFile');
 const { signIn, logIn, signMember } = require('./signIn-logIn');
 const uploadFont = require('./fontCompress/uploadFont');
 const fontList = require('./fontCompress/fontList');
+const notSave = require('./fontCompress/notSave');
 
 module.exports = {
   // 接口
@@ -20,5 +21,6 @@ module.exports = {
   '/signmember': signMember, // 添加组员接口
   '/uploadfont': uploadFont, // 上传文件接口
   '/fontlist': fontList,  // 查询字体
+  '/notsave': notSave
   // '/fontdelete': fontDelete
 }
