@@ -4,7 +4,7 @@ const { selectData }  = require('../util/database');
 module.exports = function (req, res) {
   if (!methodCheck(req, res, 'GET')) return;
 
-  authentication(req)
+  authentication(req, 'member')
   .then(data => {
     if (data.result == false) {
       res.write(JSON.stringify({
