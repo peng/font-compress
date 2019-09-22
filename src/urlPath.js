@@ -1,9 +1,10 @@
-const fontCompress = require('./fontCompress');
-const fontFile = require('./fontCompress/fontFile');
-const { signIn, logIn, signMember } = require('./signIn-logIn');
-const uploadFont = require('./fontCompress/uploadFont');
-const fontList = require('./fontCompress/fontList');
-const notSave = require('./fontCompress/notSave');
+const fontCompress = require('./fontCompress'),
+  fontFile = require('./fontCompress/fontFile'),
+  { signIn, logIn, signMember } = require('./signIn-logIn'),
+  uploadFont = require('./fontCompress/uploadFont'),
+  fontList = require('./fontCompress/fontList'),
+  notSave = require('./fontCompress/notSave'),
+  { fontDelete } = require('./fontCompress/fontDelete');
 
 module.exports = {
   // 接口
@@ -21,6 +22,6 @@ module.exports = {
   '/signmember': signMember, // 添加组员接口
   '/uploadfont': uploadFont, // 上传文件接口
   '/fontlist': fontList,  // 查询字体
-  '/notsave': notSave
-  // '/fontdelete': fontDelete
+  '/notsave': notSave,  // 获取不储存压缩字体接口
+  '/fontdelete': fontDelete
 }
