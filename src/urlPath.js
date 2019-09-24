@@ -23,5 +23,5 @@ module.exports = {
   '/uploadfont': uploadFont, // 上传文件接口
   '/fontlist': fontList,  // 查询字体
   '/notsave': notSave,  // 获取不储存压缩字体接口
-  '/fontdelete': fontDelete
+  '/fontdelete': fontDelete, // 字体删除
 }
