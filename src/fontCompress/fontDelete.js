@@ -37,6 +37,12 @@ function deleteCache(filename) {
 
     selectData('FONT_CACHE', ['cachePath'], `sourceName='${filename}'`).then(selRes => {
 
+      // check if have cache
+      if (selRes.result.length == 0) {
+        resolve(true);
+        return;
+      }
+
       // delete cache database
       deleteData('FONT_CACHE', `sourceName='${filename}'`).then(() => {
         deleteTask.cacheDatabase = true;
