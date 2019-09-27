@@ -1,3 +1,7 @@
+/**
+ * @file api get font file list
+ */
+
 const { methodCheck, authentication } = require('../util');
 const { selectData }  = require('../util/database');
 
@@ -15,7 +19,7 @@ module.exports = function (req, res) {
       return;
     };
 
-    selectData('font', ['name', 'type'])
+    selectData('font', ['id', 'name', 'type'])
     .then(data => {
       const list = data.result;
       res.write(JSON.stringify({
