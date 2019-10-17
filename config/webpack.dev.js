@@ -1,5 +1,6 @@
-const path = require("path");
-const comConfig = require("./webpack.common");
+const path = require("path"),
+  comConfig = require("./webpack.common"),
+  { server: serConfig } = require("../src/config");
 
 const CSSLoader = {
   test: /\.css$/,
@@ -17,7 +18,9 @@ const CSSLoader = {
 comConfig.module.rules.push(CSSLoader);
 comConfig.devtool = "inline-source-map";
 comConfig.devServer.proxy = {
-  "/": "http://127.0.0.1:8000"
+  "/": `http://${serConfig.host}${
+    serConfig.httpPort == 80 ? "" : ":" + serConfig.httpPort
+  }`
 };
 
 module.exports = comConfig;
