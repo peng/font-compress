@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
+// 使用 require 避免生成 0.js 1.js ......
 const useComponent = component => () => import(`./pages/${component}.vue`);
 const useHomeComp = component => () => import(`./pages/home/${component}.vue`);
 
