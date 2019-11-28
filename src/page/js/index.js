@@ -1,9 +1,9 @@
-import Vue from 'vue';
-import Element from 'element-ui';
-import '../css/index.less';
-import 'element-ui/lib/theme-chalk/index.css';
-import App from './app.vue';
-import router from './router';
+import Vue from "vue";
+import Element from "element-ui";
+import "../css/index.less";
+import "element-ui/lib/theme-chalk/index.css";
+import App from "./app.vue";
+import router from "./router";
 
 // (function (comps) {
 //   comps.forEach(item => {
@@ -17,6 +17,6 @@ new Vue({
   components: { App },
   router,
   render(h) {
-    return h('App');
+    return h("App");
   }
-}).$mount('#root');
+}).$mount("#root");
