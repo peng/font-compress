@@ -3,8 +3,8 @@
  * @author peng
  */
 
-const crypto = require("crypto");
-const { selectData } = require("./database");
+import crypto from "crypto";
+import { selectData } from "./database";
 
 /**
  * CORS http response headers set
