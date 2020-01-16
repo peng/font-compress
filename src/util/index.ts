@@ -11,7 +11,7 @@ import { selectData } from "./database";
  *
  * @param {Object} response http response Object
  */
-function CORS(response) {
+function CORS(response: any) {
   response.setHeader("Access-Control-Allow-Origin", "*");
   response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
   response.setHeader(
