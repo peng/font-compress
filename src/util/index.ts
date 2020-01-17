@@ -29,7 +29,7 @@ function CORS(response: any) {
  * @param {string} data string to md5
  * @return {string} md5 string
  */
-function md5(data) {
+function md5(data: string): string {
   const hash = crypto.createHash("md5");
   return hash.update(data).digest("hex");
 }
