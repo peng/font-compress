@@ -42,7 +42,7 @@ function md5(data: string): string {
  * @param {string} method request method that you nedd
  * @return {boolean} return pass or not
  */
-function methodCheck(req, res, method) {
+function methodCheck(req: any, res: any, method: string): boolean {
   if (req.method !== method) {
     res.writeHead(405, { "Content-Type": "text/plain" });
     res.end("405 error! Method Not Allowed!");
