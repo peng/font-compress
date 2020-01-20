@@ -104,7 +104,10 @@ export function selectData(
   table: string,
   col?: Array<string>,
   condition?: string
-): Promise<{}> {
+): Promise<{
+  result: any;
+  fields: any;
+}> {
   // connection.connect();
   let column: string = col ? col.join(", ") : "*";
   condition = condition ? ` WHERE ${condition}` : "";
