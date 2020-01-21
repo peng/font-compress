@@ -62,7 +62,12 @@ function methodCheck(req: any, res: any, method: string): boolean {
  * @resolve {boolean} auth.result return result pass or not
  * @resolve {Object} auth.data return query sql data
  */
-function authentication(req, power) {
+interface powerNum {
+  readonly root: number;
+  readonly admin: number;
+  readonly member: number;
+}
+function authentication(req: any, power: keyof powerNum) {
   /* 
   传入一个 request 对象
 
@@ -80,8 +85,8 @@ function authentication(req, power) {
    * @param {string} needPower need power that interface need
    * @return {Boolean} return true that you have power, return false that you don't have power
    */
-  const powerCheck = (userPower, needPower) => {
-    let powerNum = {
+  const powerCheck = (userPower: keyof powerNum, needPower: keyof powerNum) => {
+    const powerNum: powerNum = {
       root: 3,
       admin: 2,
       member: 1
