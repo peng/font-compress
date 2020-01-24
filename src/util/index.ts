@@ -170,7 +170,7 @@ const validator = {
    *   desc: {string} reason
    * }
    */
-  account(account) {
+  account(account: string) {
     if (account.length < 4) {
       return {
         result: false,
