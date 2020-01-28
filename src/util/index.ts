@@ -160,6 +160,10 @@ function authentication(req: any, power: keyof powerNum) {
  * @const
  * @type {Object}
  */
+interface validatorResult {
+  result: boolean;
+  desc: string;
+}
 const validator = {
   /**
    * validator account
@@ -170,7 +174,7 @@ const validator = {
    *   desc: {string} reason
    * }
    */
-  account(account: string) {
+  account(account: string): validatorResult {
     if (account.length < 4) {
       return {
         result: false,
@@ -199,7 +203,7 @@ const validator = {
    *   desc: {string} reason
    * }
    */
-  password(password) {
+  password(password: string): validatorResult {
     /* 
       6-25个字符串，英文大小写,数字，英文特殊符号
     */
@@ -235,7 +239,7 @@ const errMethod = {
    *
    * @param {Object} res http response
    */
-  forbidden: res => {
+  forbidden: (res: any) => {
     res.end(
       JSON.stringify({
         code: 403,
@@ -249,7 +253,7 @@ const errMethod = {
    * @param {Object} err error information
    * @param {Object} res http response object
    */
-  serverErr: (err, res) => {
+  serverErr: (err: any, res: any) => {
     console.error(err);
     res.end(
       JSON.stringify({
@@ -263,7 +267,7 @@ const errMethod = {
    *
    * @param {Object} res http response object
    */
-  userErr: res => {
+  userErr: (res: any) => {
     res.end(
       JSON.stringify({
         code: 401,
