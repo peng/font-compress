@@ -40,7 +40,10 @@ export function updateData(
   table: string,
   set: Array<string>,
   condition: string
-): Promise<{}> {
+): Promise<{
+  result: any;
+  fields: any;
+}> {
   return new Promise((resolve, reject) => {
     let connection = mysql.createConnection(config.mysql);
     connection.connect();
@@ -171,7 +174,13 @@ export function selectData(
  * @param {String=} condition sql syntax WHERE condition it is chooose or not, if no condition will delete all table data
  * @return {Promise} Promise
  */
-export function deleteData(table: string, condition: string): Promise<{}> {
+export function deleteData(
+  table: string,
+  condition?: string
+): Promise<{
+  result: any;
+  fields: any;
+}> {
   // connection.connect();
   condition = condition ? " WHERE " + condition : "";
   return new Promise((resolve, reject) => {
@@ -228,8 +237,11 @@ export function deleteData(table: string, condition: string): Promise<{}> {
 export function insertData(
   table: string,
   head: Array<string>,
-  value: Array<string>
-): Promise<{}> {
+  value: Array<string | number>
+): Promise<{
+  result: any;
+  fields: any;
+}> {
   // connection.connect();
   return new Promise((resolve, reject) => {
     const task = `INSERT INTO ${table} (${head.join(
@@ -290,7 +302,13 @@ export function insertData(
  * @param {Array} column column name and data type
  * @return {Promise} Promise
  */
-export function createTable(table: string, column: Array<string>): Promise<{}> {
+export function createTable(
+  table: string,
+  column: Array<string>
+): Promise<{
+  result: any;
+  fields: any;
+}> {
   // connection.connect();
   const colStr = column.join(", ");
   return new Promise((resolve, reject) => {
@@ -349,7 +367,13 @@ export function createTable(table: string, column: Array<string>): Promise<{}> {
  * @param {string} table name of database table
  * @return {Promise} Promise
  */
-export function existTable(table: string): Promise<{}> {
+export function existTable(
+  table: string
+): Promise<{
+  have: boolean;
+  result: any;
+  fields: any;
+}> {
   // connection.connect();
   return new Promise((resolve, reject) => {
     let connection = mysql.createConnection(config.mysql);
