@@ -477,7 +477,12 @@ export function selectDatabase(database: string): Promise<{}> {
  * @param {string} database database name you want to create
  * @return {Promise} Promise
  */
-export function createDatabase(database: string): Promise<{}> {
+export function createDatabase(
+  database: string
+): Promise<{
+  result: any;
+  fields: any;
+}> {
   // connection.connect();
   return new Promise((resolve, reject) => {
     let connection = mysql.createConnection(config.mysql);
@@ -526,15 +531,3 @@ export function createDatabase(database: string): Promise<{}> {
     connection.end();
   });
 }
-
-module.exports = {
-  createDatabase,
-  selectDatabase,
-  existTable,
-  createTable,
-  insertData,
-  selectData,
-  sqlCustom,
-  deleteData,
-  updateData
-};
