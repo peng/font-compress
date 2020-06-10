@@ -7,6 +7,7 @@
   "author": "zhangzhipeng1",
   "private": true,
   "dependencies": {
+    "@types/mysql": "^2.15.8",
     "element-ui": "^2.11.1",
     "fontmin": "^0.9.8",
     "multiparty": "^4.2.1",
@@ -28,6 +29,9 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/jest": "^25.1.0",
+    "@types/node": "^13.1.6",
     "autoprefixer": "^9.6.4",
     "babel-loader": "^8.0.6",
     "babel-plugin-component": "^1.1.1",
@@ -49,6 +53,8 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.18.2",
+    "ts-jest": "^25.0.0",
+    "typescript": "^3.7.5",
     "vue-loader": "^15.7.1",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
