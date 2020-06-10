@@ -36,14 +36,21 @@ export function sqlCustom(task: string): Promise<{}> {
  * @param {string} condition database WHERE condition
  * @return {Promise} Promise
  */
+
+interface fields {
+  catalog: string;
+}
+
+interface updateDataResult {
+  result: [] | undefined;
+  fields: fields[] | undefined;
+}
+
 export function updateData(
   table: string,
   set: Array<string>,
   condition: string
-): Promise<{
-  result: any;
-  fields: any;
-}> {
+): Promise<updateDataResult> {
   return new Promise((resolve, reject) => {
     let connection = mysql.createConnection(config.mysql);
     connection.connect();
