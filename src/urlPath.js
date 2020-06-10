@@ -12,7 +12,8 @@ const fontCompress = require("./fontCompress"),
   uploadFont = require("./fontCompress/uploadFont"),
   fontList = require("./fontCompress/fontList"),
   notSave = require("./fontCompress/notSave"),
-  { fontDelete } = require("./fontCompress/fontDelete");
+  { fontDelete } = require("./fontCompress/fontDelete"),
+  pageFiles = require("./pageFiles");
 
 module.exports = {
   // 接口
@@ -35,5 +36,6 @@ module.exports = {
   "/updatepassword": updatePassword, // 更改密码
   "/memberlist": memberList, // 获取成员列表接口
   "/updatepower": updatePower, // 更改权限接口
-  "/memberdel": memberDel // 删除成员接口
+  "/memberdel": memberDel, // 删除成员接口
+  "/page": pageFiles
 };
